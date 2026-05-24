@@ -1,9 +1,15 @@
 import pandas as pd
 import plotly.express as px
 from pathlib import Path
+import glob
 
 # Ruta del CSV
-csv_path = "data/disney_movies.csv"
+files = glob.glob("data/*.csv")
+
+if not files:
+    raise Exception("No hay CSV en la carpeta data")
+
+csv_path = files[0]
 
 # Leer data
 df = pd.read_csv(csv_path)
